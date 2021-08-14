@@ -1,0 +1,19 @@
+// Place all the styles related to the api/v1/Recipes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.jumbotron {
+  background-color: var(--bs-gray-200);
+}
+
+.custom-button.btn:hover {
+    color: #FFF !important;
+    border: none;
+    background-color: var(--bs-pink);
+}
+
+.card {
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+    -moz-box-shadow: 0 10px 6px -6px #777;
+    box-shadow: 0 10px 6px -6px #777;
+};
