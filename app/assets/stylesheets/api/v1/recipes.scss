@@ -17,3 +17,10 @@
     -moz-box-shadow: 0 10px 6px -6px #777;
     box-shadow: 0 10px 6px -6px #777;
 };
+
+.hero img {
+    object-fit: cover;
+    object-position: center !important;
+    height: 100%;
+    width: 100%;
+}
