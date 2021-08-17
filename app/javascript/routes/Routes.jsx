@@ -16,5 +16,5 @@ export default (
       <Route path="/recipe/:id" exact component={Recipe} />
       <Route path="/newrecipe" exact component={NewRecipe} />
     </Switch>
-  </Router>
+  </Router>    
 );

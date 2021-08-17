@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 class Recipes extends React.Component {
   constructor(props) {
@@ -51,6 +53,7 @@ class Recipes extends React.Component {
 
       return (
         <>
+          < Navbar ></ Navbar> 
           <section className="jumbotron jumbotron-fluid text-center">
             <div className="container py-5">
               <h1 className="display-4">Recipes for every occasion</h1>
@@ -70,11 +73,9 @@ class Recipes extends React.Component {
               <div className="row">
                 { recipes.length > 0 ? allRecipes : noRecipe }
               </div>
-              <Link to="/" className="btn btn-link">
-                Home
-              </Link>
             </main>
           </div>
+          < Footer />
         </>
       );
     }
