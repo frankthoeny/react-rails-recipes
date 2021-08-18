@@ -62,17 +62,29 @@ class Recipes extends React.Component {
                 <h1 className="display-4">Recipes for every occasion</h1>
                 <p className="lead text-muted">
                   We've pulled together our most popular recipes, <br></br>
-                  so there's sure to be something tempting for all of you to try!
+                  so there's sure to be something tempting for all to try!
                 </p>
               </div>
             </section>
+
+
+            <div className="row">
+              <section className="strip text-center">
+                <div className="col-sm py-3">
+                  <h1 className="display-6">Go Ahead</h1>
+                </div>
+                <div className="col-sm text-center py-1">
+                  <p className="lead text-muted align-middle" style={{margin: 0}}>Include your favorite dish!</p>
+                </div>  
+                <div className="col-sm text-center py-3">
+                  <Link to="/newrecipe" className="btn custom-button">
+                    Add a Recipe
+                  </Link>
+                </div>
+              </section>
+            </div>
             <div className="py-5">
               <main className="container">
-              <div className="text-right mb-3">
-                <Link to="/recipe" className="btn custom-button">
-                  Create New Recipe
-                </Link>
-              </div>
               <div className="row">
                 { recipes.length > 0 ? allRecipes : noRecipe }
               </div>

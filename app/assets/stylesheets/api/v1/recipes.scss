@@ -5,6 +5,19 @@
 .jumbotron {
   background-color: khaki;
 }
+.strip {
+  background-color: black;
+  padding-left: 2em;
+  padding-right: 2em;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.strip h1 {
+  color: var(--bs-pink);
+  margin: 0;
+}
 
 .custom-button.btn:hover {
     color: #FFF !important;
@@ -62,12 +75,22 @@ a.btn.btn-link:hover {
     opacity: .85;
   }
 
+.list-group, .prep {
+    margin-bottom: 1rem !important;
+}
+
 @media (min-width: 100px) {
     img.card-img-top {
         flex-shrink: 0;
         min-width: 100%;
         min-height: 100%;
         max-height: 483px;;
+    }
+    .list-group, .prep {
+        margin-bottom: 2rem !important;
+    }
+    .strip {
+      display: initial;
     }
 }
 
@@ -78,6 +101,9 @@ a.btn.btn-link:hover {
         min-height: 100%;
         max-height: 314px;;
     }
+    .strip {
+        display: inline-flex;
+      }
 
 }
 
@@ -87,6 +113,9 @@ a.btn.btn-link:hover {
         min-width: 100%;
         min-height: 100%;
         max-height: 276px;;
+    }
+    .strip {
+        display: inline-flex;
     }
 }
 

@@ -26,10 +26,19 @@ class Api::V1::RecipesController < ApplicationController
     render json: { message: 'Recipe killed!' }
   end
 
+  def update
+    recipe = Recipe.find(params[:id])
+    if recipe.update_attributes!(recipe_params)
+      render json: { message: "Recipe has been updated" }
+    else
+      render json: recipe.errors
+    end
+  end
+
   private
 
   def recipe_params
-    params.permit(:name, :image, :ingredients, :instruction)
+    params.permit(:id, :name, :image, :ingredients, :instruction)
   end
 
   def recipe
