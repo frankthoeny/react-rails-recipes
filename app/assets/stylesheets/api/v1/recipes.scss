@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .jumbotron {
-  background-color: var(--bs-gray-200);
+  background-color: khaki;
 }
 
 .custom-button.btn:hover {
@@ -13,6 +13,12 @@
 }
 
 .card {
+    -webkit-box-shadow: 0 10px 5px -9px #777;
+    -moz-box-shadow: 0 10px 5px -9px #777;
+    box-shadow: 0 10px 5px -9px #777;
+};
+
+.card:hover {
     -webkit-box-shadow: 0 10px 6px -6px #777;
     -moz-box-shadow: 0 10px 6px -6px #777;
     box-shadow: 0 10px 6px -6px #777;
@@ -33,6 +39,29 @@ img.card-img-top {
     min-height: 100%;
     overflow: hidden;
 }
+.btn-danger {
+    color: #fff;
+    background-color: var(--bs-pink);
+    border-color: var(--bs-pink);
+}
+a.btn.btn-link {
+    margin-top: 4rem;
+    font-size: 2em;
+    text-decoration: none;
+    color: var(--bs-gray-500);
+    font-weight: 200;
+    padding: 0;
+}
+
+a.btn.btn-link:hover {
+    color: var(--bs-gray-800); 
+}
+
+.third-color {
+    background-color: #eaeef6;
+    opacity: .85;
+  }
+
 @media (min-width: 100px) {
     img.card-img-top {
         flex-shrink: 0;

@@ -62,7 +62,7 @@ export default () => (
           </li>
           <li className="nav-item">
             <Link
-              to="/newrecipe"
+              to="/cooks"
               className="nav-link"
               >
               The Cooks
@@ -70,7 +70,7 @@ export default () => (
           </li>
           <li className="nav-item">
             <Link
-              to="/newrecipe"
+              to="/baking"
               className="nav-link"
               >
               Bake with Us

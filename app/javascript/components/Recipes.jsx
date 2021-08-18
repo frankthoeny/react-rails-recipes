@@ -53,18 +53,21 @@ class Recipes extends React.Component {
 
       return (
         <>
-          < Navbar ></ Navbar> 
-          <section className="jumbotron jumbotron-fluid text-center">
-            <div className="container py-5">
-              <h1 className="display-4">Recipes for every occasion</h1>
-              <p className="lead text-muted">
-                We've pulled together our most popular recipes, <br></br>
-                so there's sure to be something tempting for all of you to try!
-              </p>
-            </div>
-          </section>
-          <div className="py-5 secondary-color">
-            <main className="container">
+          < Navbar ></ Navbar>
+          <div className="third-color"></div>
+           
+          <div id="page-content">
+            <section className="jumbotron jumbotron-fluid text-center">
+              <div className="container py-5">
+                <h1 className="display-4">Recipes for every occasion</h1>
+                <p className="lead text-muted">
+                  We've pulled together our most popular recipes, <br></br>
+                  so there's sure to be something tempting for all of you to try!
+                </p>
+              </div>
+            </section>
+            <div className="py-5">
+              <main className="container">
               <div className="text-right mb-3">
                 <Link to="/recipe" className="btn custom-button">
                   Create New Recipe
@@ -74,7 +77,9 @@ class Recipes extends React.Component {
                 { recipes.length > 0 ? allRecipes : noRecipe }
               </div>
             </main>
+            </div>
           </div>
+          
           < Footer />
         </>
       );

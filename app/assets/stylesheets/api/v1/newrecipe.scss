@@ -1,0 +1,45 @@
+// Place all the styles related to the api/v1/Recipes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+#page-content {
+    flex: 1 0 auto;
+    min-height: 80vh;
+    min-height: 75vh;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: var(--bs-pink);
+    border-color: var(--bs-pink);
+}
+  
+.third-color {
+    background-color: #eaeef6;
+    opacity: .85;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+  
+@media (min-width: 100px) {
+
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 992px) {
+
+}
+
+@media (min-width: 1400px) {
+
+}
+  
