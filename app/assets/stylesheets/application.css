@@ -50,10 +50,7 @@
   width: 100%;
   opacity: 0.4;
 }
-footer{
-  background-color: khaki;
-  min-height: 250px;
-}
+
 .navbar-nav {
   display: flex;
   flex-direction: column;
@@ -61,6 +58,11 @@ footer{
   margin-bottom: 0;
   list-style: none;
   margin-left: 1rem;
+}
+
+footer{
+  background-color: khaki;
+  min-height: 250px;
 }
 footer .navbar-brand {
   padding-top: .3125rem;
@@ -79,4 +81,14 @@ footer .navbar-nav .nav-link {
 }
 footer .navbar-nav .nav-link:hover {
   color:  var(--bs-pink);
+}
+
+h1.recipeTitle {
+  color: #7aaef5;
+}
+h1 span {
+  color: var(--bs-gray-800);
+}
+.lite-text {
+  color: var(--bs-gray-600) !important;
 }

@@ -8,7 +8,6 @@ class Recipe extends React.Component {
     this.state = { recipe: { ingredients: ""} };
     this.addHtmlEntities = this.addHtmlEntities.bind(this);
     this.deleteRecipe = this.deleteRecipe.bind(this);
-    this.editRecipe = this.editRecipe.bind(this);
   }
 
   addHtmlEntities(str) {
@@ -48,32 +47,6 @@ class Recipe extends React.Component {
 
     fetch(url, {
       method: "DELETE",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      }
-    })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
-      .then( () => this.props.history.push("/recipes") )
-      .catch( error => console.log(error.message) );
-  }
-
-  editRecipe() {
-    const { 
-      match: { 
-       params:{ id }
-     }
-    } = this.props;
-    const url =  `/api/v1/update/${id}`;
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-
-    fetch(url, {
-      method: "PATCH",
       headers: {
         "X-CSRF-Token": token,
         "Content-Type": "application/json"
@@ -136,8 +109,10 @@ class Recipe extends React.Component {
                 />
               </div>  
               <div className="col-sm-12 col-lg-2">
-                <button type="button" className="btn btn-danger" onClick={this.editRecipe}>
-                  Edit Recipe
+                <button type="button" className="btn btn-danger">
+                  <Link to={`/recipe/${recipe.id}/edit`}>
+                    Edit Recipe
+                  </Link>
                 </button>
               </div>
               <div className="col-sm-12 col-lg-2">

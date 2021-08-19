@@ -3,80 +3,101 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-
-class NewRecipe extends React.Component {
+class UpdateRecipe extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       name: "",
       ingredients: "",
       image: "",
       instruction: "",
       is_published: true
     };
-
+    
+    this.addHtmlEntities = this.addHtmlEntities.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.updateRecipe = this.updateRecipe.bind(this);
     this.stripHtmlEntities = this.stripHtmlEntities.bind(this);
   }
-  
-  stripHtmlEntities(str) {
+
+   addHtmlEntities(str) {
+     return String(str)
+     .replace(/&lt;/g, "<")
+     .replace(/&gt;/g, ">");
+   } 
+   
+   stripHtmlEntities(str) {
     return String(str)
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;");
+      .replace(/<br>/g, "\n" );
   }
 
-  onChange(event){
-    this.setState({ [event.target.name]: event.target.value });
-  }
+  componentDidMount() {
+    const {
+      match: {
+        params: { id }
+      }
+    } = this.props;
 
-  onSubmit(event) {
-    event.preventDefault();
-    const url = "/api/v1/recipes/create";
-    const { name, ingredients, image, instruction } = this.state;
-    console.log('this.state', this.state);
-    
-    if (name.length == 0 || ingredients.lenth == 0 || instruction.length == 0 || image.length == 0 )
-      return;
-    
-    const body = {
-      name,
-      ingredients,
-      image,
-      instruction: instruction.replace(/\n/g, "<br> <br>")
-    };
+    const url = `/api/v1/show/${id}`;
+    console.log('this.url', url);
 
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
+    fetch(url)
       .then(response => {
         if (response.ok) {
           return response.json();
         }
         throw new Error("Network response was not ok.");
       })
+      .then(data => this.setState( { ...data } ))
+      .catch(error => console.log(error.message) );
+  }
+
+  onChange(event){
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+  updateRecipe(event) {
+    event.preventDefault();
+    const {
+      match: {
+        params: { id }
+      }
+    } = this.props;
+    const url = `/api/v1/recipes/${id}/update`;
+    const { name, ingredients, image, instruction } = this.state;
+    const token = document.querySelector('meta[name="csrf-token"]').content;
+
+    fetch(url, {
+      method: "PATCH",
+      headers: {
+        "X-CSRF-Token": token,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(this.state)
+    })
+      .then( (response) => {
+        alert('Recipe updated successfully');
+      })
       .then(response => this.props.history.push(`/recipe/${response.id}`))
       .catch(error => console.log(error.message));
   }
 
   render() {
-    return (
+    const { name, ingredients, image, instruction, is_published } = this.state;
+    const { recipe } = this.state;
+    const recipeInstruction = this.stripHtmlEntities(instruction);
+
+      return (
       <>
-        < Navbar ></ Navbar>
-        <div className="third-color"></div>
-        
+        < Navbar />
         <div id="page-content">
+          
           <div className="container mt-5">
             <div className="row">
               <div className="col-sm-12 col-lg-6 offset-lg-3">
-                <h1 className="font-weight-normal mb-5">
-                  Add a new recipe to our awesome recipe collection.
+                <h1 className="font-weight-normal mb-5 display-6 recipeTitle">
+                  Update the recipe: <br />
+                  <span>{name}</span>.
                 </h1>
                 <form onSubmit={this.onSubmit}>
                 <div className="form-group">
@@ -85,8 +106,9 @@ class NewRecipe extends React.Component {
                     type="text"
                     name="name"
                     id="recipeName"
-                    className="form-control"
+                    className="form-control lite-text"
                     required
+                    value={name}
                     onChange={this.onChange}
                   />
                 </div>
@@ -96,10 +118,14 @@ class NewRecipe extends React.Component {
                     type="text"
                     name="image"
                     id="recipeImage"
-                    className="form-control"
+                    className="form-control lite-text"
                     required
+                    value={image}
                     onChange={this.onChange}
                   />
+                  <small id="ingredientsHelp" className="form-text text-muted">
+                    For now, only upload a hosted endpoint.
+                  </small>
                 </div>
                 <div className="form-group">
                   <label htmlFor="recipeIngredients">Ingredients</label>
@@ -107,8 +133,9 @@ class NewRecipe extends React.Component {
                     type="text"
                     name="ingredients"
                     id="recipeIngredients"
-                    className="form-control"
+                    className="form-control lite-text"
                     required
+                    value={ingredients}
                     onChange={this.onChange}
                   />
                   <small id="ingredientsHelp" className="form-text text-muted">
@@ -119,16 +146,17 @@ class NewRecipe extends React.Component {
                   Preparation Instructions
                 </label>
                 <textarea 
-                  className="form-control"
+                  className="form-control lite-text"
                   name="instruction" 
                   id="instruction" 
                   cols="30" 
                   rows="5"
                   required
+                  value={recipeInstruction}
                   onChange={this.onChange}
                 />
-                <button type="submit" className="btn custom-button mt-3">
-                  Create Recipe
+                <button onClick={this.updateRecipe} className="btn custom-button mt-3">
+                  Update Recipe
                 </button>
               </form>
               <Link to="/recipes" className="btn btn-link mt-3">
@@ -137,12 +165,12 @@ class NewRecipe extends React.Component {
               </div>
             </div>    
           </div>
+          
         </div>
-        
         < Footer />
       </>
-    );
-  }
-}
+      );
+    }
 
-export default NewRecipe;
+}
+export default UpdateRecipe;
