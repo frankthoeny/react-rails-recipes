@@ -66,17 +66,15 @@ class Recipes extends React.Component {
                 </p>
               </div>
             </section>
-
-
             <div className="row">
-              <section className="strip text-center">
-                <div className="col-sm py-3">
+              <section className="strip text-end py-3">
+                <div className="col-sm">
                   <h1 className="display-6">Go Ahead</h1>
                 </div>
                 <div className="col-sm text-center py-1">
                   <p className="lead text-muted align-middle" style={{margin: 0}}>Include your favorite dish!</p>
                 </div>  
-                <div className="col-sm text-center py-3">
+                <div className="col-sm left">
                   <Link to="/newrecipe" className="btn custom-button">
                     Add a Recipe
                   </Link>

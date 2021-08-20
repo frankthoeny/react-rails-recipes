@@ -108,22 +108,22 @@ class Recipe extends React.Component {
                   }}
                 />
               </div>  
-              <div className="col-sm-12 col-lg-2">
-                <button type="button" className="btn btn-danger">
-                  <Link to={`/recipe/${recipe.id}/edit`}>
+              <div className="col-sm-12 col-lg-2 d-flex align-items-end flex-column bd-highlight mb-3">
+                <Link 
+                    to={`/recipe/${recipe.id}/edit`}
+                    className="btn custom-button mb-4"
+                    role="button"
+                    >
                     Edit Recipe
-                  </Link>
-                </button>
-              </div>
-              <div className="col-sm-12 col-lg-2">
-                <button type="button" className="btn btn-danger" onClick={this.deleteRecipe}>
+                </Link>
+                <button type="button" className="btn btn-danger mb-4" onClick={this.deleteRecipe}>
                   Delete Recipe
                 </button>
+                <Link to="/recipes" className="big-link mt-10">
+                  &#60; Back to Recipes  
+                </Link>
               </div>
             </div>
-            <Link to="/recipes" className="btn btn-link">
-            &#60; Back to Recipes  
-            </Link>
           </div>
         </div>
         < Footer />

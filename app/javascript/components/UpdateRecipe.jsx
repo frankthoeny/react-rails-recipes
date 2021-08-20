@@ -63,17 +63,23 @@ class UpdateRecipe extends React.Component {
         params: { id }
       }
     } = this.props;
-    const url = `/api/v1/recipes/${id}/update`;
+    const url = `/api/v1/update/${id}`;
     const { name, ingredients, image, instruction } = this.state;
-    const token = document.querySelector('meta[name="csrf-token"]').content;
+    const body = {
+      name,
+      ingredients,
+      image,
+      instruction: instruction.replace(/\n/g, "<br> <br>")
+    };
 
+    const token = document.querySelector('meta[name="csrf-token"]').content;
     fetch(url, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: {
         "X-CSRF-Token": token,
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(this.state)
+      body: JSON.stringify(body)
     })
       .then( (response) => {
         alert('Recipe updated successfully');
@@ -91,10 +97,10 @@ class UpdateRecipe extends React.Component {
       <>
         < Navbar />
         <div id="page-content">
-          
-          <div className="container mt-5">
+          <div className="main-shot" style={{ backgroundImage: `url(${this.state.image})` }}></div>
+          <div className="container mt-5 mb-5 jumbotron bg-transparent">
             <div className="row">
-              <div className="col-sm-12 col-lg-6 offset-lg-3">
+              <div className="col-sm-12 col-lg-6 offset-lg-3 py-2 px-3 main-color">
                 <h1 className="font-weight-normal mb-5 display-6 recipeTitle">
                   Update the recipe: <br />
                   <span>{name}</span>.
@@ -155,12 +161,12 @@ class UpdateRecipe extends React.Component {
                   value={recipeInstruction}
                   onChange={this.onChange}
                 />
-                <button onClick={this.updateRecipe} className="btn custom-button mt-3">
+                <button type="submit" onClick={this.updateRecipe} className="btn custom-button mt-3">
                   Update Recipe
                 </button>
               </form>
-              <Link to="/recipes" className="btn btn-link mt-3">
-                &#60; Back to Recipes
+              <Link to={`/recipe/${this.state.id}`} className="btn btn-link mt-3">
+                &#60; Back to Recipe
               </Link>
               </div>
             </div>    
