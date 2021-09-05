@@ -29,11 +29,13 @@ class Recipes extends React.Component {
       const allRecipes = recipes.map((recipe, index) => (
         <div key={index} className = "col-md-6 col-lg-4">
           <div className="card mb-4">
-            <img 
-              src={recipe.image} 
-              className="card-img-top"
-              alt={`${recipe.name} image`} 
-            />
+            <Link to={`/recipe/${recipe.id}`}>
+              <img 
+                src={recipe.image} 
+                className="card-img-top"
+                alt={`${recipe.name} image`} 
+              />
+            </Link>  
             <div className="card-body">
               <h5 className= "card-title">{recipe.name}</h5>
               <Link to={`/recipe/${recipe.id}`} className="btn custom-button">
@@ -72,7 +74,7 @@ class Recipes extends React.Component {
                   <h1 className="display-6">Go Ahead</h1>
                 </div>
                 <div className="col-sm text-center py-1">
-                  <p className="lead text-muted align-middle" style={{margin: 0}}>Include your favorite dish!</p>
+                  <p className="lead text-muted align-middle">Include your favorite dish!</p>
                 </div>  
                 <div className="col-sm left">
                   <Link to="/newrecipe" className="btn custom-button">
